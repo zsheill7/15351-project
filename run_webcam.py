@@ -33,6 +33,7 @@ if __name__ == '__main__':
                         help='for debug purpose, if enabled, speed for inference is dropped.')
     args = parser.parse_args()
 
+
     logger.debug('initialization %s : %s' % (args.model, get_graph_path(args.model)))
     w, h = model_wh(args.resize)
     if w > 0 and h > 0:
@@ -47,8 +48,15 @@ if __name__ == '__main__':
     while True:
         ret_val, image = cam.read()
 
+        logger.debug('ret_val')
+        #logger.debug(image)
+
         logger.debug('image process+')
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
+
+        # humans contains information stored like this
+        logger.debug("humans")
+        logger.debug(humans)
 
         logger.debug('postprocess+')
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
