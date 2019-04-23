@@ -1,131 +1,31 @@
-# tf-pose-estimation
+## 15.351 Project
 
-'Openpose', human pose estimation algorithm, have been implemented using Tensorflow. It also provides several variants that have some changes to the network structure for **real-time processing on the CPU or low-power embedded devices.**
+Based on tensorflow pose estimation
 
-**You can even run this on your macbook with a descent FPS!**
+How information is stored:
 
-Original Repo(Caffe) : https://github.com/CMU-Perceptual-Computing-Lab/openpose
+tf-pose-estimation returns an array of this type
 
-| CMU's Original Model</br> on Macbook Pro 15" | Mobilenet-thin </br>on Macbook Pro 15" | Mobilenet-thin</br>on Jetson TX2 |
-|:---------|:--------------------|:----------------|
-| ![cmu-model](/etcs/openpose_macbook_cmu.gif)     | ![mb-model-macbook](/etcs/openpose_macbook_mobilenet3.gif) | ![mb-model-tx2](/etcs/openpose_tx2_mobilenet3.gif) |
-| **~0.6 FPS** | **~4.2 FPS** @ 368x368 | **~10 FPS** @ 368x368 |
-| 2.8GHz Quad-core i7 | 2.8GHz Quad-core i7 | Jetson TX2 Embedded Board | 
+The tuple (a,b) example: (0.15, 0.29) represents the position of the body part, 0.15 represents 0.15 down from the top and 0.29 is 0.29 of the image from the left
 
-Implemented features are listed here : [features](./etcs/feature.md)
+[BodyPart:0-(0.15, 0.29) score=0.81 BodyPart:1-(0.14, 0.39) score=0.76 BodyPart:2-(0.08, 0.38) score=0.78 BodyPart:3-(0.04, 0.46) score=0.52 BodyPart:4-(0.09, 0.47) score=0.43 BodyPart:5-(0.19, 0.40) score=0.72 BodyPart:6-(0.20, 0.48) score=0.42 BodyPart:7-(0.13, 0.48) score=0.15 BodyPart:8-(0.06, 0.57) score=0.30 BodyPart:11-(0.12, 0.58) score=0.26 BodyPart:14-(0.14, 0.27) score=0.89 BodyPart:15-(0.17, 0.28) score=0.69 BodyPart:16-(0.12, 0.27) score=0.25 BodyPart:17-(0.19, 0.30) score=0.69, BodyPart:0-(0.33, 0.33) score=0.38 BodyPart:1-(0.31, 0.41) score=0.40 BodyPart:2-(0.26, 0.41) score=0.45 BodyPart:3-(0.23, 0.49) score=0.39 BodyPart:5-(0.37, 0.43) score=0.33 BodyPart:6-(0.37, 0.50) score=0.09 BodyPart:7-(0.37, 0.42) score=0.23 BodyPart:8-(0.27, 0.55) score=0.08 BodyPart:11-(0.33, 0.57) score=0.14 BodyPart:14-(0.33, 0.30) score=0.55 BodyPart:15-(0.35, 0.32) score=0.59 BodyPart:16-(0.25, 0.34) score=0.72 BodyPart:17-(0.37, 0.35) score=0.27, BodyPart:0-(0.89, 0.33) score=0.34 BodyPart:1-(0.89, 0.39) score=0.24 BodyPart:2-(0.87, 0.39) score=0.24 BodyPart:5-(0.92, 0.39) score=0.20 BodyPart:14-(0.88, 0.32) score=0.30 BodyPart:15-(0.89, 0.32) score=0.34 BodyPart:16-(0.88, 0.33) score=0.18 BodyPart:17-(0.90, 0.33) score=0.16, BodyPart:0-(0.27, 0.34) score=0.67 BodyPart:1-(0.26, 0.39) score=0.50 BodyPart:5-(0.28, 0.40) score=0.53 BodyPart:14-(0.26, 0.33) score=0.67 BodyPart:15-(0.27, 0.34) score=0.70 BodyPart:16-(0.25, 0.34) score=0.72 BodyPart:17-(0.28, 0.34) score=0.37, BodyPart:0-(0.46, 0.33) score=0.70 BodyPart:1-(0.55, 0.60) score=0.13 BodyPart:5-(0.71, 0.60) score=0.19 BodyPart:14-(0.41, 0.27) score=0.82 BodyPart:15-(0.51, 0.25) score=0.86 BodyPart:17-(0.60, 0.29) score=0.69]
 
-## Important Updates
-
-- 2019.3.12 Add new models using mobilenet-v2 architecture. See : [experiments.md](./etc/experiments.md)
-- 2018.5.21 Post-processing part is implemented in c++. It is required compiling the part. See: https://github.com/ildoonet/tf-pose-estimation/tree/master/src/pafprocess
-- 2018.2.7 Arguments in run.py script changed. Support dynamic input size.
-
-## Install
-
-### Dependencies
-
-You need dependencies below.
-
-- python3
-- tensorflow 1.4.1+
-- opencv3, protobuf, python3-tk
-- slidingwindow
-  - https://github.com/adamrehn/slidingwindow
-  - I copied from the above git repo to modify few things.
-
-### Install
-
-Clone the repo and install 3rd-party libraries.
-
-```bash
-$ git clone https://www.github.com/ildoonet/tf-pose-estimation
-$ cd tf-pose-estimation
-$ pip3 install -r requirements.txt
-```
-
-Build c++ library for post processing. See : https://github.com/ildoonet/tf-pose-estimation/tree/master/tf_pose/pafprocess
-```
-$ cd tf_pose/pafprocess
-$ swig -python -c++ pafprocess.i && python3 setup.py build_ext --inplace
-```
-
-### Package Install
-
-Alternatively, you can install this repo as a shared package using pip.
-
-```bash
-$ git clone https://www.github.com/ildoonet/tf-pose-estimation
-$ cd tf-openpose
-$ python setup.py install
-```
-
-## Models & Performances
-
-See [experiments.md](./etc/experiments.md)
-
-### Download Tensorflow Graph File(pb file)
-
-Before running demo, you should download graph files. You can deploy this graph on your mobile or other platforms.
-
-- cmu (trained in 656x368)
-- mobilenet_thin (trained in 432x368)
-- mobilenet_v2_large (trained in 432x368)
-- mobilenet_v2_small (trained in 432x368)
-
-CMU's model graphs are too large for git, so I uploaded them on an external cloud. You should download them if you want to use cmu's original model. Download scripts are provided in the model folder.
-
-```
-$ cd models/graph/cmu
-$ bash download.sh
-```
-
-## Demo
-
-### Test Inference
-
-You can test the inference feature with a single image.
-
-```
-$ python run.py --model=mobilenet_thin --resize=432x368 --image=./images/p1.jpg
-```
-
-The image flag MUST be relative to the src folder with no "~", i.e:
-```
---image ../../Desktop
-```
-
-Then you will see the screen as below with pafmap, heatmap, result and etc.
-
-![inferent_result](./etcs/inference_result2.png)
-
-### Realtime Webcam
-
-```
-$ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0
-```
-
-Then you will see the realtime webcam screen with estimated poses as below. This [Realtime Result](./etcs/openpose_macbook13_mobilenet2.gif) was recored on macbook pro 13" with 3.1Ghz Dual-Core CPU.
-
-## Python Usage
-
-This pose estimator provides simple python classes that you can use in your applications.
-
-See [run.py](run.py) or [run_webcam.py](run_webcam.py) as references.
-
-```python
-e = TfPoseEstimator(get_graph_path(args.model), target_size=(w, h))
-humans = e.inference(image)
-image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
-```
-
-## ROS Support
-
-See : [etcs/ros.md](./etcs/ros.md)
-
-## Training
-
-See : [etcs/training.md](./etcs/training.md)
-
-## References
-
-See : [etcs/reference.md](./etcs/reference.md)
+Nose = 0
+Neck = 1
+RShoulder = 2
+RElbow = 3
+RWrist = 4
+LShoulder = 5
+LElbow = 6
+LWrist = 7
+RHip = 8
+RKnee = 9
+RAnkle = 10
+LHip = 11
+LKnee = 12
+LAnkle = 13
+REye = 14
+LEye = 15
+REar = 16
+LEar = 17
+Background = 18
