@@ -52,6 +52,11 @@ if __name__ == '__main__':
     # export as CSV
     #
     #
+    #
+    #
+    '''
+    Implement output csv fuction
+    '''
     csv_output_list = []
     export_field_names = ['uidx', 'part_idx', 'x', 'y', 'score']
     for human in humans:
@@ -64,9 +69,7 @@ if __name__ == '__main__':
             body_part_subdict = {"uidx": body_part.uidx, "part_idx": body_part.part_idx, "x": body_part.x, "y": body_part.y, "score": body_part.score}
             csv_output_list.append(body_part_subdict)
 
-    '''
-    Implement output csv fuction
-    '''
+
 
     with open('body_parts_file.csv', mode='w') as body_parts_file:
         writer = csv.DictWriter(body_parts_file, fieldnames=export_field_names)

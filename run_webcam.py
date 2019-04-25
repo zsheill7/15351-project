@@ -1,6 +1,7 @@
 import argparse
 import logging
 import time
+import csv
 
 import cv2
 import numpy as np
@@ -54,6 +55,37 @@ if __name__ == '__main__':
         logger.debug('image process+')
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
 
+        '''
+        Implement output csv fuction
+        '''
+        csv_output_list = []
+        export_field_names = ['uidx', 'part_idx', 'x', 'y', 'score']
+        for human in humans:
+            body_parts = human.body_parts
+
+            print("body_part")
+            #print(body_parts.keys())
+            print(body_parts.values())
+            for body_part in body_parts.values():
+                body_part_subdict = {"uidx": body_part.uidx, "part_idx": body_part.part_idx, "x": body_part.x, "y": body_part.y, "score": body_part.score}
+                csv_output_list.append(body_part_subdict)
+
+
+
+        with open('body_parts_realtime_file.csv', mode='w') as body_parts_file:
+            writer = csv.DictWriter(body_parts_file, fieldnames=export_field_names)
+
+            writer.writeheader()
+            logger.info("update_extracted_features_csv: wrote header for extracted features CSV")
+            for body_parts_list in csv_output_list:
+                writer.writerow(body_parts_list)
+
+            #temp_file.flush()
+            #repository.upload(temp_file.name, settings.PDF_EXTRACTED_FEATURES_CSV_S3_KEY, 'text/csv')
+
+        '''
+        Finish implemennt output csv function
+        '''
         # humans contains information stored like this
         logger.debug("humans")
         logger.debug(humans)
