@@ -5,6 +5,7 @@ import csv
 
 import cv2
 import numpy as np
+import serial
 
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
@@ -54,6 +55,20 @@ if __name__ == '__main__':
 
         logger.debug('image process+')
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
+
+
+
+        '''
+        Serial 
+        '''
+        sendSerial = serial.Serial("COM3", 9600)
+        sendSerial.write("12 3")
+
+        '''
+        
+        '''
+
+
 
         '''
         Implement output csv fuction

@@ -34,8 +34,14 @@ File file;
 //#define D   A0
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
+int data;
+
 void setup() {
 
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
+  
   matrix.begin();
 
 
@@ -45,7 +51,13 @@ void setup() {
 }
 
 void loop() {
-
+  while(Serial.available())
+  {
+    data = Serial.read();
+    Serial.println("reading serial");
+    digitalWrite(13, HIGH);
+  }
+  
 
 //          head   neck   Shou    Elbo     Hand    Pelv
 //drawFigure (15, 5, 15, 9, 12, 12, 10, 12, 6, 14, 15, 19);
