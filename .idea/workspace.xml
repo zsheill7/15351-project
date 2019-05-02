@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71068159-d972-4fbb-862f-63069658d9ff" name="Default" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/tf-pose-estimation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tf-pose-estimation.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_webcam.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_webcam.py" afterDir="false" />
+>>>>>>> e6ac73ae2ccfc513f703d3c04326dac99f6852e0
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +48,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
+      <file leaf-file-name="RnD_PoseEstimationFigure_32x32.ino" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/arduino/RnD_PoseEstimationFigure_32x32/RnD_PoseEstimationFigure_32x32.ino">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="61" column="11" lean-forward="true" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arduino/RnD_PoseEstimationFigure_32x32/RnD_PoseEstimationFigure_32x32.ino">
           <provider selected="true" editor-type-id="text-editor">
@@ -73,6 +84,7 @@
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
+>>>>>>> e6ac73ae2ccfc513f703d3c04326dac99f6852e0
             </state>
           </provider>
         </entry>
@@ -105,10 +117,17 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
+    <option name="x" value="1114" />
+    <option name="y" value="699" />
+    <option name="width" value="1299" />
+    <option name="height" value="954" />
+=======
     <option name="x" value="32" />
     <option name="y" value="34" />
     <option name="width" value="1976" />
     <option name="height" value="1618" />
+>>>>>>> e6ac73ae2ccfc513f703d3c04326dac99f6852e0
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -177,6 +196,30 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="1114" y="699" width="1299" height="954" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25377885" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="R Packages" order="3" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+=======
     <frame x="244" y="12" width="988" height="809" extended-state="0" />
     <editor active="true" />
     <layout>
@@ -203,6 +246,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
+>>>>>>> e6ac73ae2ccfc513f703d3c04326dac99f6852e0
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +258,10 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/arduino/RnD_PoseEstimationFigure_32x32/RnD_PoseEstimationFigure_32x32.ino">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="3030">
+          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+=======
         <state relative-caret-position="290">
           <caret line="107" selection-start-line="107" selection-end-line="107" />
         </state>
@@ -236,6 +284,14 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+>>>>>>> e6ac73ae2ccfc513f703d3c04326dac99f6852e0
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arduino/RnD_PoseEstimationFigure_32x32/RnD_PoseEstimationFigure_32x32.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="61" column="11" lean-forward="true" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
         </state>
       </provider>
     </entry>

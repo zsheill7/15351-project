@@ -36,11 +36,24 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 int data;
 
+int headX;
+int headY;
+int neckX;
+int neckY;
+int ShouX;
+int ShouY;
+int rElboX;
+int rElboY;
+int rHandX;
+int rHandY;
+int pelvX;
+int pelvY;
+
 void setup() {
 
   Serial.begin(9600);
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
+  //pinMode(13, OUTPUT);
+  //digitalWrite(13, LOW);
   
   matrix.begin();
 
@@ -53,13 +66,33 @@ void setup() {
 void loop() {
   while(Serial.available())
   {
-    data = Serial.read();
-    Serial.println("reading serial");
-    digitalWrite(13, HIGH);
+    headX = Serial.readStringUntil('\n').toInt();
+    headY = Serial.readStringUntil('\n').toInt();
+    neckX = Serial.readStringUntil('\n').toInt();
+    neckY = Serial.readStringUntil('\n').toInt();
+    ShouX = Serial.readStringUntil('\n').toInt();
+    ShouY = Serial.readStringUntil('\n').toInt();
+    rElboX = Serial.readStringUntil('\n').toInt();
+    rElboY = Serial.readStringUntil('\n').toInt();
+    rHandX = Serial.readStringUntil('\n').toInt();
+    rHandY = Serial.readStringUntil('\n').toInt();
+    pelvX = Serial.readStringUntil('\n').toInt();
+    pelvY = Serial.readStringUntil('\n').toInt();
+    //Serial.println("reading serial");
+    //Serial.println(nose);
+    //Serial.println(neck);
+    //Serial.println(rShoulder);
+    
+    //drawFigure (15, 5, 15, 9, 12, 12, 8, 12,  5, 14, 15, 19);
+    //drawFigure(headX, headY, neckX, neckY, ShouX, ShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+    //digitalWrite(13, HIGH);
+//    delay (25);
+//    drawFigure(headX, headY, neckX, neckY, ShouX, ShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+//    
   }
   
 
-//          head   neck   Shou    Elbo     Hand    Pelv
+////          head   neck   Shou    Elbo     Hand    Pelv
 //drawFigure (15, 5, 15, 9, 12, 12, 10, 12, 6, 14, 15, 19);
 //delay (25);
 //drawFigure (15, 6, 15, 10, 12, 13, 11, 11, 7, 10, 17, 19);
@@ -68,28 +101,28 @@ void loop() {
 //delay (25);
 //drawFigure (15, 8, 16, 12, 13, 15, 12, 9, 10, 5, 22, 20);
 //delay (500);
-
-//          head   neck    Shou    Elbo   Hand    Pelv
-drawFigure (15, 5, 15, 9, 12, 12, 8, 12,  5, 14, 15, 19);
-delay (25);
-drawFigure (15, 5, 15, 9, 12, 12, 10, 11, 6, 10, 15, 19);
-delay (25);
-drawFigure (16, 5, 16, 9, 13, 11, 9, 8,   7, 5,  15, 19);
-delay (25);
-for (int i = 0; i < 5; i++){
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  9, 3,  15, 19);
-  delay (10);
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  8, 4,  15, 19);
-  delay (10);
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  7, 5,  15, 19);
-  delay (10);
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  6, 6,  15, 19);
-  delay (10);
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  7, 5,  15, 19);
-  delay (10);
-  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  8, 4,  15, 19);
-  delay (10);
-}
+//
+////          head   neck    Shou    Elbo   Hand    Pelv
+//drawFigure (15, 5, 15, 9, 12, 12, 8, 12,  5, 14, 15, 19);
+//delay (25);
+//drawFigure (15, 5, 15, 9, 12, 12, 10, 11, 6, 10, 15, 19);
+//delay (25);
+//drawFigure (16, 5, 16, 9, 13, 11, 9, 8,   7, 5,  15, 19);
+//delay (25);
+//for (int i = 0; i < 5; i++){
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  9, 3,  15, 19);
+//  delay (10);
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  8, 4,  15, 19);
+//  delay (10);
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  7, 5,  15, 19);
+//  delay (10);
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  6, 6,  15, 19);
+//  delay (10);
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  7, 5,  15, 19);
+//  delay (10);
+//  drawFigure (16, 5, 16, 9, 13, 11, 10, 8,  8, 4,  15, 19);
+//  delay (10);
+//}
 delay (500);
 
 }
