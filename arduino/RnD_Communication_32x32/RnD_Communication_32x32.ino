@@ -81,7 +81,7 @@ void loop() {
 //delay (500); 
   
 }
-const byte numChars = 32;
+const byte numChars = 32;  //TODO: check if this restricts length of string
 char receivedChars[numChars];
 
 boolean newData = false;
