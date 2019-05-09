@@ -52,8 +52,17 @@ int rShouX = 12;
 int rShouY = 12;
 int rElboX = 8;
 int rElboY = 12;
-int rHandX = 5;
+int rHandX = 24;
 int rHandY = 14;
+
+int lShouX = 16;
+int lShouY = 12;
+int lElboX = 20;
+int lElboY = 12;
+int lHandX = 5;
+int lHandY = 14;
+
+
 int pelvX = 15;
 int pelvY = 19;
 
@@ -68,43 +77,91 @@ void setup() {
 }
 
 void loop() {
+  //drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, lShouX, lShouY, lElboX, lElboY, lHandX, lHandY, pelvX, pelvY);
+  drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+  
   while(Serial.available())
   {
     headX = Serial.readStringUntil('\n').toInt();
     headY = Serial.readStringUntil('\n').toInt();
     neckX = Serial.readStringUntil('\n').toInt();
     neckY = Serial.readStringUntil('\n').toInt();
+    
     rShouX = Serial.readStringUntil('\n').toInt();
     rShouY = Serial.readStringUntil('\n').toInt();
     rElboX = Serial.readStringUntil('\n').toInt();
     rElboY = Serial.readStringUntil('\n').toInt();
     rHandX = Serial.readStringUntil('\n').toInt();
     rHandY = Serial.readStringUntil('\n').toInt();
+
+    lShouX = Serial.readStringUntil('\n').toInt();
+    lShouY = Serial.readStringUntil('\n').toInt();
+    lElboX = Serial.readStringUntil('\n').toInt();
+    lElboY = Serial.readStringUntil('\n').toInt();
+    lHandX = Serial.readStringUntil('\n').toInt();
+    lHandY = Serial.readStringUntil('\n').toInt();
+    
     pelvX = Serial.readStringUntil('\n').toInt();
     pelvY = Serial.readStringUntil('\n').toInt();
     //Serial.println("reading serial");
     //Serial.println(nose);
     //Serial.println(neck);
     //Serial.println(rShoulder);
+    //drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, 
+                                         //  lShouX, lShouY, lElboX, lElboY, lHandX, lHandY, pelvX, pelvY);
     drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
-    
-    
-    //drawFigure(headX, headY, neckX, neckY, ShouX, ShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+    delay(20);
+    matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+    //drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, lShouX, lShouY, lElboX, lElboY, lHandX, lHandY, pelvX, pelvY);
+    //drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+    drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
     //digitalWrite(13, HIGH);
 //    delay (25);
-//    drawFigure(headX, headY, neckX, neckY, ShouX, ShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
+//    drawFigure(headX, headY, neckX, neckY, rShouX, rhouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
 //    
   }
   //drawFigure(headX, headY, neckX, neckY, rShouX, rShouY, rElboX, rElboY, rHandX, rHandY, pelvX, pelvY);
-  delay(500);
-  //matrix.fillScreen(matrix.Color333(0, 0, 0));
+  
+  
 }
+
+//void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, 
+//                                                              int lShouX, int lShouY, int lElboX, int lElboY, int lHandX, int lHandY, int pelvX, int pelvY){
+//
+//  // draw figure 1
+//  //Head
+//  matrix.fillCircle(headX, headY, 2, matrix.Color333(7, 7, 0));
+//  //Body
+//  matrix.drawLine(neckX, neckY, pelvX, pelvY, matrix.Color333(0, 0, 7));
+//  matrix.drawLine(neckX-1, neckY, pelvX-1, pelvY, matrix.Color333(0, 0, 7));
+//  matrix.drawLine(neckX+1, neckY, pelvX+1, pelvY, matrix.Color333(0, 0, 7));
+//  //matrix.fillRect(14, 9, 3, 10, matrix.Color333(0, 0, 7));
+//  //Right arm
+//  matrix.drawLine(rHandX, rHandY, rElboX, rElboY, matrix.Color333(7, 0, 0));
+//  matrix.drawLine(rElboX, rElboY, rShouX, rShouY, matrix.Color333(0, 7, 7));
+//  matrix.drawLine(rShouX, rShouY, neckX, neckY+2, matrix.Color333(0, 0, 7));
+//
+//  matrix.drawLine(lHandX, lHandY, lElboX, lElboY, matrix.Color333(7, 0, 0));
+//  matrix.drawLine(lElboX, lElboY, lShouX, lShouY, matrix.Color333(0, 7, 7));
+//  matrix.drawLine(lShouX, lShouY, neckX, neckY+2, matrix.Color333(0, 0, 7));
+//  //matrix.drawLine(16, 14, 2, 10, matrix.Color333(0, 7, 7));
+//  //Right hand
+//  matrix.fillCircle(rHandX, rHandY, 1, matrix.Color333(7, 7, 0)); 
+//
+//  matrix.fillCircle(lHandX, lHandY, 1, matrix.Color333(7, 7, 0)); 
+//  delay(20);
+//
+//  // fill the screen with 'black'
+//  //matrix.fillScreen(matrix.Color333(0, 0, 0));
+//  delay (10);
+//}
 
 void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY){
 
   // draw figure 1
-  //Head
-  matrix.fillCircle(headX, headY, 2, matrix.Color333(7, 7, 0));
+  //Head . 
+  matrix.fillCircle(headX, headY, 4, matrix.Color333(7, 7, 0));
   //Body
   matrix.drawLine(neckX, neckY, pelvX, pelvY, matrix.Color333(0, 0, 7));
   matrix.drawLine(neckX-1, neckY, pelvX-1, pelvY, matrix.Color333(0, 0, 7));
@@ -116,10 +173,10 @@ void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rSh
   matrix.drawLine(rShouX, rShouY, neckX, neckY+2, matrix.Color333(0, 0, 7));
   //matrix.drawLine(16, 14, 2, 10, matrix.Color333(0, 7, 7));
   //Right hand
-  matrix.fillCircle(rHandX, rHandY, 1, matrix.Color333(7, 7, 0)); 
+  matrix.fillCircle(rHandX, rHandY, 1, matrix.Color333(7, 7, 0));
   delay(300);
 
   // fill the screen with 'black'
-  //matrix.fillScreen(matrix.Color333(0, 0, 0));
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
   delay (25);
 }

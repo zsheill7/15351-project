@@ -61,11 +61,12 @@ if __name__ == '__main__':
         '''
         Serial 
         '''
-        serial_port = "/dev/cu.usbmodem14101"
+        serial_port = "/dev/cu.usbmodem14601"
 
         sendSerial = serial.Serial(serial_port, 9600)
 
-        time.sleep(1)
+
+        time.sleep(0.05)
 
         # int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY
 
@@ -108,16 +109,35 @@ if __name__ == '__main__':
         x = "x"
         y = "y"
 
+        #parts_id_list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         parts_id_list = [0, 1, 2, 3, 4, 8]
+        parts_default_dict = {0: 10, 1: 12, 2: 12, 3: 10, 4: 5, 5: 6, 6:10, 7:6 , 8: 15}
         parts_list = []
+
+        scaled_multiplier = 32
 
         for id in parts_id_list:
             if id in final_parts_dict:
-                parts_list.append(final_parts_dict[id][x])
-                parts_list.append(final_parts_dict[id][y])
+
+                # final_string is in format <0-0:x,y#
+                # final_string = "<" + "0" + "-" + id + str(final_parts_dict[id][x]) + "," + str(final_parts_dict[id][y]) + "#" + ">"
+                #
+                # print("final_string")
+                # print(final_string)
+                # parts_list.append(final_string)
+
+
+                parts_list.append(int(final_parts_dict[id][x]*scaled_multiplier))
+                parts_list.append(int(final_parts_dict[id][y]*scaled_multiplier))
             else:
-                parts_list.append(10)
-                parts_list.append(10)
+                #parts_list.append(10)
+
+
+
+                parts_list.append(parts_default_dict[id])
+                parts_list.append(parts_default_dict[id])
+
+        print(parts_list)
 
         # headX = final_parts_dict[0][x]
         # headY = final_parts_dict[0][y]

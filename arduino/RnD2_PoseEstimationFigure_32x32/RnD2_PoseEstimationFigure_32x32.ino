@@ -90,6 +90,8 @@ void setup() {
 
   // fill the screen with 'black'
   matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  #drawFigure (15, 5, 15, 9, 12, 12, 8, 12,  5, 14, 15, 19);
   
   Serial.println("<Arduino ready.>");
 }
@@ -139,6 +141,7 @@ void loop() {
 //}
 
 void getDataFromPC() {
+    
 
     // receive data from PC and save it into inputBuffer
 
@@ -323,6 +326,8 @@ void replyToPC() {
 void buildFigureArray(){
   
 }
+
+
 
 void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY){
 
