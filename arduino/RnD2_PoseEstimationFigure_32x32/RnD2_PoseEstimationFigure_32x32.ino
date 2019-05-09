@@ -250,7 +250,7 @@ void assignReceivedCharToBodyParts(){
             j++;
             doBodyCheck = false;
           }
-        }
+        } 
       }      
       else {
         if (body==99 || part==99) doBodyCheck=false;
@@ -318,11 +318,57 @@ void replyToPC() {
   }
 }
 
+void drawSegment(int x0, int y0, int x1, int y1) {
+  if (x1 + y1 + x0 + y0 <199) {
+    matrix.drawLine(x0, y0, x1, y1, matrix.Color333(0, 7, 7));
+  }
+}
 
 
+//Uses byDataFromPC array to draw figure head and body segments on 32 x 32 array
 void buildFigureArray(){
+int headSize;
+int headX;
+int headY;
+
+    
+  if (newDataFromPC) {
+    newDataFromPC = false;
+    Serial.print("Drawing Body ");
+    for(byte b=0; b<byBodyCount; b++){
+      //Draw head
+      if (arrPartsCapture[b][0][1]+arrPartsCapture[b][0][2]<199){
+        headX = arrPartsCapture[b][0][1];
+        headY = arrPartsCapture[b][0][2];
+      }
+      else {
+        headX = 0;
+        headY = 0; 
+      }
+      if (arrPartsCapture[b][0][1]+arrPartsCapture[b][0][2]+arrPartsCapture[b][1][1]+arrPartsCapture[b][1][2]<199) {
+        headSize = floor( sqrt( (((arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])*(arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])) - ((arrPartsCapture[b][1][1]-arrPartsCapture[b][0][1])*(arrPartsCapture[b][1][1]-arrPartsCapture[b][0][1]))*((arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])*(arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2]))) ));
+      }
+      else {
+        headSize = 2;
+      }
+      matrix.fillCircle(headX, headY, 3, matrix.Color333(7, 7, 0));
+
+      //Draw shoulders
+      drawSegment(arrPartsCapture[b][1][1],arrPartsCapture[b][1][2],arrPartsCapture[b][2][1],arrPartsCapture[b][2][2]);
+      drawSegment(arrPartsCapture[b][1][1],arrPartsCapture[b][1][2],arrPartsCapture[b][5][1],arrPartsCapture[b][5][2]);
+      
+      
+//      Serial.print("  Part ");
+//      Serial.print(p);
+//      Serial.print(" X ");
+//      Serial.print(arrPartsCapture[b][p][1]);
+//      Serial.print(" y ");
+//      Serial.println(arrPartsCapture[b][p][2]);
+    }
+  }
   
 }
+
 
 void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY){
 
