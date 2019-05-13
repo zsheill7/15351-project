@@ -98,7 +98,6 @@ void loop() {
  
   //readSerialConsecIntegers();
   getDataFromPC();
-//  replyToPC();
   
 //  Serial.print(".");
       
@@ -115,28 +114,6 @@ void loop() {
 //  delay (50);
 
 }
-
-//void readSerialConsecIntegers() {
-//   while(Serial.available())
-//  {
-//    headX = Serial.readStringUntil('\n').toInt();
-//    headY = Serial.readStringUntil('\n').toInt();
-//    neckX = Serial.readStringUntil('\n').toInt();
-//    neckY = Serial.readStringUntil('\n').toInt();
-//    ShouX = Serial.readStringUntil('\n').toInt();
-//    ShouY = Serial.readStringUntil('\n').toInt();
-//    rElboX = Serial.readStringUntil('\n').toInt();
-//    rElboY = Serial.readStringUntil('\n').toInt();
-//    rHandX = Serial.readStringUntil('\n').toInt();
-//    rHandY = Serial.readStringUntil('\n').toInt();
-//    pelvX = Serial.readStringUntil('\n').toInt();
-//    pelvY = Serial.readStringUntil('\n').toInt();
-//    Serial.println("reading serial");
-//    Serial.println(nose);
-//    Serial.println(neck);
-//    Serial.println(rShoulder);
-//  }
-//}
 
 void getDataFromPC() {
 
@@ -268,6 +245,7 @@ void assignReceivedCharToBodyParts(){
   part=0;
   doBodyCheck = true;
   replyToPC();
+  buildFigureArray();
 }
 
 //void parseData() {
@@ -294,7 +272,8 @@ void replyToPC() {
   byte b=0;
     
   if (newDataFromPC) {
-    newDataFromPC = false;
+    //comment out line below line buildFigureArray function is being used
+    //newDataFromPC = false;
     Serial.print("Body ");
     Serial.println(b);
     for(byte p=0; p<byBodyParts; p++){
@@ -306,15 +285,6 @@ void replyToPC() {
       Serial.println(arrPartsCapture[b][p][2]);
     }
 
-//    Serial.print("<Msg ");
-//    Serial.print(messageFromPC);
-//    Serial.print(" headX ");
-//    Serial.print(headX);
-//    Serial.print(" headY ");
-//    Serial.print(headY);
-//    Serial.print(" neckX ");
-//    Serial.print(neckX);
-//    Serial.println(">");
   }
 }
 
@@ -333,7 +303,9 @@ int headY;
 
     
   if (newDataFromPC) {
+    
     newDataFromPC = false;
+    matrix.fillScreen(matrix.Color333(0, 0, 0));
     Serial.print("Drawing Body ");
     for(byte b=0; b<byBodyCount; b++){
       //Draw head
@@ -383,29 +355,4 @@ int headY;
       }
     }
   } 
-}
-
-
-void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY){
-
-  // draw figure 1
-  //Head
-  matrix.fillCircle(headX, headY, 3, matrix.Color333(7, 7, 0));
-  //Body
-  matrix.drawLine(neckX, neckY, pelvX, pelvY, matrix.Color333(0, 0, 7));
-  matrix.drawLine(neckX-1, neckY, pelvX-1, pelvY, matrix.Color333(0, 0, 7));
-  matrix.drawLine(neckX+1, neckY, pelvX+1, pelvY, matrix.Color333(0, 0, 7));
-  //matrix.fillRect(14, 9, 3, 10, matrix.Color333(0, 0, 7));
-  //Right arm
-  matrix.drawLine(rHandX, rHandY, rElboX, rElboY, matrix.Color333(7, 3, 3));
-  matrix.drawLine(rElboX, rElboY, rShouX, rShouY, matrix.Color333(0, 7, 7));
-  matrix.drawLine(rShouX, rShouY, neckX, neckY+2, matrix.Color333(0, 0, 7));
-  //matrix.drawLine(16, 14, 2, 10, matrix.Color333(0, 7, 7));
-  //Right hand
-  matrix.fillCircle(rHandX, rHandY, 1, matrix.Color333(7, 7, 0));
-  delay(300);
-
-  // fill the screen with 'black'
-  matrix.fillScreen(matrix.Color333(0, 0, 0));
-  delay (25);
 }
