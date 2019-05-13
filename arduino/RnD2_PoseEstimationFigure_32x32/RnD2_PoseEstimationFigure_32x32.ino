@@ -90,8 +90,6 @@ void setup() {
 
   // fill the screen with 'black'
   matrix.fillScreen(matrix.Color333(0, 0, 0));
-
-  //drawFigure (15, 5, 15, 9, 12, 12, 8, 12,  5, 14, 15, 19);
   
   Serial.println("<Arduino ready.>");
 }
@@ -141,7 +139,6 @@ void loop() {
 //}
 
 void getDataFromPC() {
-    
 
     // receive data from PC and save it into inputBuffer
 
@@ -345,8 +342,8 @@ int headY;
         headY = arrPartsCapture[b][0][2];
       }
       else {
-        headX = 0;
-        headY = 0; 
+        headX = 45;
+        headY = 45; 
       }
       if (arrPartsCapture[b][0][1]+arrPartsCapture[b][0][2]+arrPartsCapture[b][1][1]+arrPartsCapture[b][1][2]<199) {
         headSize = floor( sqrt( (((arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])*(arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])) - ((arrPartsCapture[b][1][1]-arrPartsCapture[b][0][1])*(arrPartsCapture[b][1][1]-arrPartsCapture[b][0][1]))*((arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2])*(arrPartsCapture[b][1][2]-arrPartsCapture[b][0][2]))) ));
@@ -354,26 +351,40 @@ int headY;
       else {
         headSize = 2;
       }
-      matrix.fillCircle(headX, headY, 3, matrix.Color333(7, 7, 0));
+      matrix.fillCircle(headX, headY, headSize, matrix.Color333(7, 7, 0));
 
       //Draw shoulders
       drawSegment(arrPartsCapture[b][1][1],arrPartsCapture[b][1][2],arrPartsCapture[b][2][1],arrPartsCapture[b][2][2]);
       drawSegment(arrPartsCapture[b][1][1],arrPartsCapture[b][1][2],arrPartsCapture[b][5][1],arrPartsCapture[b][5][2]);
-      
-      
-//      Serial.print("  Part ");
-//      Serial.print(p);
-//      Serial.print(" X ");
-//      Serial.print(arrPartsCapture[b][p][1]);
-//      Serial.print(" y ");
-//      Serial.println(arrPartsCapture[b][p][2]);
+      //Draw Left Arm
+      drawSegment(arrPartsCapture[b][2][1],arrPartsCapture[b][2][2],arrPartsCapture[b][3][1],arrPartsCapture[b][3][2]);
+      drawSegment(arrPartsCapture[b][3][1],arrPartsCapture[b][3][2],arrPartsCapture[b][4][1],arrPartsCapture[b][4][2]);
+      //Draw Right Arm
+      drawSegment(arrPartsCapture[b][5][1],arrPartsCapture[b][5][2],arrPartsCapture[b][6][1],arrPartsCapture[b][6][2]);
+      drawSegment(arrPartsCapture[b][6][1],arrPartsCapture[b][6][2],arrPartsCapture[b][7][1],arrPartsCapture[b][7][2]);
+      //Draw Body
+      drawSegment(arrPartsCapture[b][1][1],arrPartsCapture[b][1][2],arrPartsCapture[b][8][1],arrPartsCapture[b][8][2]);
+      //Draw Hips
+      drawSegment(arrPartsCapture[b][8][1],arrPartsCapture[b][8][2],arrPartsCapture[b][9][1],arrPartsCapture[b][9][2]);
+      drawSegment(arrPartsCapture[b][8][1],arrPartsCapture[b][8][2],arrPartsCapture[b][12][1],arrPartsCapture[b][12][2]);
+      //Draw Left Leg
+      drawSegment(arrPartsCapture[b][9][1],arrPartsCapture[b][9][2],arrPartsCapture[b][10][1],arrPartsCapture[b][10][2]);
+      drawSegment(arrPartsCapture[b][10][1],arrPartsCapture[b][10][2],arrPartsCapture[b][11][1],arrPartsCapture[b][11][2]); 
+      //Draw Right Leg
+      drawSegment(arrPartsCapture[b][12][1],arrPartsCapture[b][12][2],arrPartsCapture[b][13][1],arrPartsCapture[b][13][2]);
+      drawSegment(arrPartsCapture[b][13][1],arrPartsCapture[b][13][2],arrPartsCapture[b][14][1],arrPartsCapture[b][14][2]);  
+
+      //Draw Eyes
+      if (arrPartsCapture[b][15][1]+arrPartsCapture[b][15][2] < 199) {
+        matrix.drawPixel(arrPartsCapture[b][15][1], arrPartsCapture[b][15][2], matrix.Color333(0, 0, 0));
+      }
+      if (arrPartsCapture[b][16][1]+arrPartsCapture[b][16][2] < 199) {
+        matrix.drawPixel(arrPartsCapture[b][16][1], arrPartsCapture[b][16][2], matrix.Color333(0, 0, 0));
+      }
     }
-  }
-  
+  } 
 }
 
-
-//<<<<<<< HEAD
 
 void drawFigure (int headX, int headY, int neckX, int neckY, int rShouX, int rShouY, int rElboX, int rElboY, int rHandX, int rHandY, int pelvX, int pelvY){
 
