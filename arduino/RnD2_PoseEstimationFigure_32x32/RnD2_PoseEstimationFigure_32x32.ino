@@ -7,6 +7,8 @@
 // for Adafruit Industries.
 // BSD license, all text above must be included in any redistribution.
 
+#include <Arduino.h>
+#include <avr/wdt.h>  // For watchdog timer
 #include <Adafruit_GFX.h>   // Core graphics library
 #include <RGBmatrixPanel.h> // Hardware-specific library
 #include <SPI.h>
@@ -71,16 +73,16 @@ void setup() {
   //digitalWrite(13, LOW);
   
   matrix.begin();
-
+  wdt_enable(WDTO_8S);
   Serial.println("<Arduino ready.>");
 
   //Show init on screen with blinking circle
-  for(byte i=0; i<5; i++) {
-    matrix.fillCircle(15, 15, 4, matrix.Color333(7, 7, 0));
-    delay (250);
-    matrix.fillScreen(matrix.Color333(0, 0, 0));
-    delay (125);
-  }
+//  for(byte i=0; i<5; i++) {
+//    matrix.fillCircle(15, 15, 4, matrix.Color333(7, 7, 0));
+//    delay (250);
+//    matrix.fillScreen(matrix.Color333(0, 0, 0));
+//    delay (125);
+//  }
 
   // fill the screen with 'black'
   matrix.fillScreen(matrix.Color333(0, 0, 0));
@@ -90,6 +92,7 @@ void setup() {
 void loop() {
  
   //readSerialConsecIntegers();
+  wdt_reset();
   getDataFromPC();
   
 //  Serial.print(".");
@@ -137,6 +140,7 @@ void getDataFromPC() {
     if (x == startMarker) { 
       bytesRecvd = 0; 
       readInProgress = true;
+      
     }
   }
 }
