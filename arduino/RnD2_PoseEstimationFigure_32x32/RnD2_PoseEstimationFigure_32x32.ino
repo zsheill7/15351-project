@@ -28,21 +28,6 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 int data;
 
-//int body;
-//int part;
-//int headX;
-//int headY;
-//int neckX;
-//int neckY;
-//int ShouX;
-//int ShouY;
-//int rElboX;
-//int rElboY;
-//int rHandX;
-//int rHandY;
-//int pelvX;
-//int pelvY;
-
 //This array can capture 3 bodies of 17 parts each
 const byte byBodyCount = 2;
 const byte byBodyParts = 17;
@@ -87,11 +72,19 @@ void setup() {
   
   matrix.begin();
 
+  Serial.println("<Arduino ready.>");
+
+  //Show init on screen with blinking circle
+  for(byte i=0; i<5; i++) {
+    matrix.fillCircle(15, 15, 4, matrix.Color333(7, 7, 0));
+    delay (250);
+    matrix.fillScreen(matrix.Color333(0, 0, 0));
+    delay (125);
+  }
 
   // fill the screen with 'black'
   matrix.fillScreen(matrix.Color333(0, 0, 0));
   
-  Serial.println("<Arduino ready.>");
 }
 
 void loop() {
